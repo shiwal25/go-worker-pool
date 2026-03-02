@@ -10,11 +10,11 @@ A small Go example demonstrating a worker-pool pattern using goroutines, channel
 </p>
 <br>
 <p>
-##Steps:<br>
-- **Create task channel**<br>
-- **Spawn workers**<br>
-- **send tasks to the pool (we will send task to channel 1 and then which ever worker will be free will take that task)**<br>
-- **wait for the workers to complete**<br>
+##Steps:
+-> Create task channel
+-> Spawn workers
+-> send tasks to the pool (we will send task to channel 1 and then which ever worker will be free will take that task)
+-> wait for the workers to complete
 </p>
 <br>
 <p>
