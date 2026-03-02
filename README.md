@@ -1,20 +1,20 @@
 #go-worker-pool
 
 A small Go example demonstrating a worker-pool pattern using goroutines, channels and sync.WaitGroup.<br>
-<p>
+
 ##Components
    
 - **Worker** : Go routine that processes taska from pool
 - **channel1** : medium through which tasks are sent to the worker (receive only channel)
 - **channel2** : send response from each worker on this channel (send only channel)
-</p>
+=
 <br>
 <p>
 ##Steps:
--> Create task channel
--> Spawn workers
--> send tasks to the pool (we will send task to channel 1 and then which ever worker will be free will take that task)
--> wait for the workers to complete
+-> Create task channel<br>
+-> Spawn workers<br>
+-> send tasks to the pool (we will send task to channel 1 and then which ever worker will be free will take that task)<br>
+-> wait for the workers to complete<br>
 </p>
 <br>
 <p>
