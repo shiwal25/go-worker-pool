@@ -1,19 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>go-worker-pool — README</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; line-height: 1.5; padding: 20px; color: #111827; }
-    code { background:#f3f4f6; padding:2px 6px; border-radius:4px; }
-    pre { background:#111827; color:#f8fafc; padding:12px; border-radius:6px; overflow:auto; }
-    h1 { font-size:1.6rem; margin-bottom:.25rem; }
-    h2 { margin-top:1.1rem; }
-    ul, ol { margin-left:1.2rem; }
-    .note { background:#fffbeb; border-left:4px solid #f59e0b; padding:8px 12px; border-radius:4px; display:inline-block; }
-  </style>
-</head>
+
 <body>
 
   <h1>go-worker-pool</h1>
