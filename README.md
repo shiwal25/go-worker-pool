@@ -1,10 +1,12 @@
-<h1>go-worker-pool</h1>
+#go-worker-pool
 
 A small Go example demonstrating a worker-pool pattern using goroutines, channels and sync.WaitGroup.<br>
 <br>
 <p>
--> Worker : Go routine that processes taska from pool<br>
--> channel1 : medium through which tasks are sent to the worker (receive only channel)<br>
+##Components
+   
+- **Worker** : Go routine that processes taska from pool
+- **channel1** : medium through which tasks are sent to the worker (receive only channel)<br>
 -> channel2 : send response from each worker on this channel (send only channel)<br>
 </p>
 <br>
@@ -38,7 +40,7 @@ Task 7 is picked up by the worker 3<br>
 <p>
 Important Concepts Used:<br>
 -> Goroutine: A lightweight thread managed by Go runtime.<br>
-```Started using: go functionName()<br>
+   Started using: go functionName()<br>
    <br>
 -> Channel: A communication mechanism between goroutines.<br>
    ch := make(chan int)<br>
