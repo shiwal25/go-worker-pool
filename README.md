@@ -4,9 +4,10 @@ A small Go example demonstrating a worker-pool pattern using goroutines, channel
 <br>
 <p>
 ##Components
+   
 - **Worker** : Go routine that processes taska from pool
-- **channel1** : medium through which tasks are sent to the worker (receive only channel)<br>
-- **channel2** : send response from each worker on this channel (send only channel)<br>
+- **channel1** : medium through which tasks are sent to the worker (receive only channel)
+- **channel2** : send response from each worker on this channel (send only channel)
 </p>
 <br>
 <p>
