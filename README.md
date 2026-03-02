@@ -38,7 +38,7 @@ Task 7 is picked up by the worker 3<br>
 <p>
 Important Concepts Used:<br>
 -> Goroutine: A lightweight thread managed by Go runtime.<br>
-   Started using: go functionName()<br>
+```Started using: go functionName()<br>
    <br>
 -> Channel: A communication mechanism between goroutines.<br>
    ch := make(chan int)<br>
