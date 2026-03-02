@@ -1,82 +1,72 @@
+<h1>go-worker-pool</h1>
 
-<body>
-
-  <h1>go-worker-pool</h1>
-
-  <p>A small Go example demonstrating a worker-pool pattern using goroutines, channels and <code>sync.WaitGroup</code>.</p>
-
-  <p>→ <strong>Worker</strong> : Go routine that processes tasks from the pool.<br />
-  → <code>channel1</code> : medium through which tasks are sent to the worker (receive-only channel).<br />
-  → <code>channel2</code> : send response from each worker on this channel (send-only channel).</p>
-
-  <h2>Steps</h2>
-  <ol>
-    <li>Create task channel.<br /></li>
-    <li>Spawn workers.<br /></li>
-    <li>Send tasks to the pool (we will send tasks to <code>channel1</code> and whichever worker is free will take that task).<br /></li>
-    <li>Wait for the workers to complete.<br /></li>
-  </ol>
-
-  <h2>Sample Output</h2>
-  <pre>
-Task 2 is picked up by the worker 3
-Task 3 is picked up by the worker 2
-Task 1 is picked up by the worker 1
-Task 4 is picked up by the worker 2
-Task 5 is picked up by the worker 3
-Task 6 is picked up by the worker 1
-Task 7 is picked up by the worker 3
-9
-4
-1
-25
-16
-36
-49
-  </pre>
-  <p><em>Note: Result ordering is not guaranteed because workers run concurrently.</em></p>
-
-  <h2>Important Concepts Used</h2>
-  <ul>
-    <li><strong>Goroutine</strong>: A lightweight thread managed by Go runtime.<br />
-      Started using: <code>go functionName()</code>.</li>
-
-    <li><strong>Channel</strong>: A communication mechanism between goroutines.<br />
-      Example: <code>ch := make(chan int)</code>.<br />
-      <em>Unbuffered channel</em> → <code>make(chan int)</code><br />
-      <em>Buffered channel</em> → <code>make(chan int, N)</code><br />
-      Buffered channels allow storing N values before blocking.</li>
-
-    <li><strong>Directional Channels</strong>: Used in function signatures for safety:<br />
-      <code>tasks <-chan int</code>  <em>// receive-only</em><br />
-      <code>results chan<- int</code> <em>// send-only</em><br />
-      This prevents misuse inside worker functions.</li>
-
-    <li><strong>sync.WaitGroup</strong>: Used to wait for multiple goroutines to finish execution.<br />
-      Methods:<br />
-      <code>wg.Add(n)</code> → increase counter<br />
-      <code>wg.Done()</code> → decrease counter<br />
-      <code>wg.Wait()</code> → block until counter becomes zero<br />
-      Typical usage:<br />
-      <pre>
-wg.Add(1)
-go func() {
-  defer wg.Done()
-  // work...
-}()
-wg.Wait()
-      </pre>
-    </li>
-
-    <li><strong>Why close channels?</strong><br />
-      <code>close(tasks)</code> → signals workers that no more tasks will come.<br />
-      <code>close(results)</code> → done after all workers finish.<br />
-      Closing a channel allows <code>range</code> loops to exit safely.</li>
-  </ul>
-
-  <div class="note">
-    <strong>Tip:</strong> Use directional channels in worker function signatures to make intent explicit and reduce bugs.
-  </div>
-
-</body>
-</html>
+A small Go example demonstrating a worker-pool pattern using goroutines, channels and sync.WaitGroup.<br>
+<br>
+<p>
+-> Worker : Go routine that processes taska from pool<br>
+-> channel1 : medium through which tasks are sent to the worker (receive only channel)<br>
+-> channel2 : send response from each worker on this channel (send only channel)<br>
+</p>
+<br>
+<p>
+Steps:<br>
+-> Create task channel<br>
+-> Spawn workers<br>
+-> send tasks to the pool (we will send task to channel 1 and then which ever worker will be free will take that task)<br>
+-> wait for the workers to complete<br>
+</p>
+<br>
+<p>
+Sample Output: <br>
+Task 2 is picked up by the worker 3<br>
+Task 3 is picked up by the worker 2<br>
+Task 1 is picked up by the worker 1<br>
+Task 4 is picked up by the worker 2<br>
+Task 5 is picked up by the worker 3<br>
+Task 6 is picked up by the worker 1<br>
+Task 7 is picked up by the worker 3<br>
+9<br>
+4<br>
+1<br>
+25<br>
+16<br>
+36<br>
+49<br>
+**Note: Result ordering is not guaranteed because workers run concurrently.<br>
+</p>
+<br>
+<p>
+Important Concepts Used:<br>
+-> Goroutine: A lightweight thread managed by Go runtime.<br>
+   Started using: go functionName()<br>
+   <br>
+-> Channel: A communication mechanism between goroutines.<br>
+   ch := make(chan int)<br>
+<br>
+-> Types:<br>
+Unbuffered channel → make(chan int)<br>
+Buffered channel → make(chan int, N)<br>
+Buffered channels allow storing N values before blocking.<br>
+<br>
+-> Directional Channels: Used in function signatures for safety:<br>
+   tasks <-chan int    // receive-only<br>
+   results chan<- int  // send-only<br>
+This prevents misuse inside worker functions.<br>
+<br>
+-> sync.WaitGroup: Used to wait for multiple goroutines to finish execution.<br>
+  Methods:<br>
+    wg.Add(n) → increase counter<br>
+    wg.Done() → decrease counter<br>
+    wg.Wait() → block until counter becomes zero<br>
+  Typical usage:<br>
+    wg.Add(1)<br>
+    go func() {<br>
+      defer wg.Done()<br>
+    }()<br>
+    wg.Wait()<br>
+<br>
+-> Why Close Channels?<br>
+  close(tasks) → signals workers that no more tasks will come.<br>
+  close(results) → done after all workers finish.<br>
+  Closing a channel allows range loops to exit safely.<br>
+</p>
